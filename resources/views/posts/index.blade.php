@@ -9,27 +9,35 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
             <a href="{{ route('posts.create') }} " class="btn btn-block btn-primary">Create new post</a>
-
-                @foreach ($posts as $post)
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-dark">
+                            <thead>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Body</th>
+                                <th>Created At</th>
+                                <th> </th>
+                            </thead>
                             
-                        <h4>Title: {{ $post->title }}</h4>
-
-                        <br />
-
-                        <p>Text: {{ $post->text }}</p>
-
-
+                            <tbody>
+                                @foreach ($posts as $post)
+                                    <tr>
+                                        <th>{{$post->id}}</th>
+                                        <td>{{$post->title}}</td>
+                                        <td>{{$post->category->name}}</td>
+                                        <td>{{ $post->text }}</td>
+                                        <td>{{date('j M, Y H:i',strtotime($post->created_at))}}</td>
+                                        <td><a href="{{route('posts.show',$post->id)}}" class="btn btn-info">View</a><a href="{{route('posts.edit',$post->id)}}" class="btn btn-secondary">Edit</a></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
                 </div>
-
-                @endforeach
+            
 
             </div>
         </div>

@@ -13,6 +13,12 @@
                     <input type="text" name="title" id="title" class="form-control">
                     <label for="text"><h2">Text:</h2></label>
                     <textarea name="text" id="mytextarea" cols="100" rows="5" ></textarea>
+                    <label for="category"><h2 class="text-white">Category:</h2></label>
+                    <select class="form-control" name="category_id" id="category_id">
+                        @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>    
                     <button type="submit" class="btn btn-success btn-lg btn-block">Create Post</button>
                 </form>
     

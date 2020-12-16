@@ -24,3 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('posts', App\Http\Controllers\PostController::class);
 
+Route::resource('/users', App\Http\Controllers\Admin\UsersController::class, ['except' => ['show','create','store']])->middleware('can:is-admin');
